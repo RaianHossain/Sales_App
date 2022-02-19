@@ -21,3 +21,10 @@ Route::get('/', function () {
 
 Route::get('/orders', [OrderController::class, 'index'])->name("orders.index");
 Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.create");
+
+
+// Products Route below
+
+Route::get('/products', [OrderController::class, 'index'])->name("products.index");
+
+
