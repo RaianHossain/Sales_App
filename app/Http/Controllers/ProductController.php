@@ -15,4 +15,11 @@ class ProductController extends Controller
     {
         return view("components.layouts.products.create");
     }
+
+    public function product_details()
+    {
+        return view("components.layouts.products.product_details");
+    }
+
+
 }

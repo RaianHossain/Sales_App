@@ -12,7 +12,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a class="btn btn-primary" href={{ route("products.create") }}>Create</a>
+              <a class="btn btn-primary" href={{ route("pricelist.create") }}>Create</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -27,6 +27,7 @@
                     
                   </tr>
                   </thead>
+                  <tbody>
                   <tr>
                     <td>Exclusive Customer</td>
                     <td>10</td>
@@ -42,7 +43,7 @@
                     <td>5</td>
                     <td>50</td>
                   </tr>
-                  <tbody>
+                  
                   </tbody>
                   <tfoot>
                   <tr>
