@@ -7,7 +7,7 @@
     <li class="nav-item d-none d-sm-inline-block">
       <a href={{ route("landing") }} class="nav-link">Home</a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,7 +30,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <a href={{ route("products.index") }}  class="dropdown-item" type="button">Products</a>
-        <a href="#"  class="dropdown-item" type="button">Pricelist</a>
+        <a href={{ route("pricelists.index") }}  class="dropdown-item" type="button">Pricelist</a>
 
       </div>
       </div>

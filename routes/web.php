@@ -32,8 +32,8 @@ Route::get('/products/create', [ProductController::class, 'create'])->name("prod
 
 // pricelist Route below
 
-Route::get('/products/pricelist', [PricelistController::class, 'index'])->name("pricelist.index");
-Route::get('/products/pricelist/create', [PricelistController::class, 'create'])->name("pricelist.create");
+Route::get('/pricelist', [PricelistController::class, 'index'])->name("pricelists.index");
+Route::get('/pricelist/create', [PricelistController::class, 'create'])->name("pricelists.create");
 
 
 
