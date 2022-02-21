@@ -13,6 +13,6 @@ class PricelistController extends Controller
     
     public function create()
     {
-        return view("components.layouts.products.pricelists.create");
+        return view("components.layouts.pricelists.create");
     }
 }

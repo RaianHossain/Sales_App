@@ -12,7 +12,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a class="btn btn-primary" href={{ route("pricelist.create") }}>Create</a>
+              <a class="btn btn-primary" href={{ route("pricelists.create") }}>Create</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
