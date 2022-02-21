@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PricelistController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,3 +23,21 @@ Route::get('/', function () {
 
 Route::get('/orders', [OrderController::class, 'index'])->name("orders.index");
 Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.create");
+
+
+// Products Route below
+
+Route::get('/products', [ProductController::class, 'index'])->name("products.index");
+Route::get('/products/create', [ProductController::class, 'create'])->name("products.create");
+
+// pricelist Route below
+
+Route::get('/pricelist', [PricelistController::class, 'index'])->name("pricelists.index");
+Route::get('/pricelist/create', [PricelistController::class, 'create'])->name("pricelists.create");
+
+
+
+
+
+
+
