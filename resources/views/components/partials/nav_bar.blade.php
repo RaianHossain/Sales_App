@@ -36,6 +36,34 @@
       </div>
     </li>
 
+    <li class="nav-item d-none d-sm-inline-block">
+      <!-- <a href="#" class="nav-link">Contact</a> -->
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Invoice
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" type="button">Order to Invoice</a>
+          <a class="dropdown-item" type="button">Order to Upsell</a>
+      </div>
+      </div>
+    </li>
+
+    <li class="nav-item d-none d-sm-inline-block">
+      <!-- <a href="#" class="nav-link">Contact</a> -->
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Report
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" type="button">Dashboard</a>
+          <a class="dropdown-item" type="button">Sales</a>
+      </div>
+      </div>
+    </li>
+
+    
+
 
   </ul>
 
