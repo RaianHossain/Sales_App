@@ -44,7 +44,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
           <a href={{ route("orders_to_invoice.index") }} class="dropdown-item" type="button">Order to Invoice</a>
-          <a class="dropdown-item" type="button">Order to Upsell</a>
+          <a href="" class="dropdown-item" type="button">Order to Upsell</a>
       </div>
       </div>
     </li>
@@ -56,8 +56,8 @@
           Report
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" type="button">Dashboard</a>
-          <a class="dropdown-item" type="button">Sales</a>
+          <a href="" class="dropdown-item" type="button">Dashboard</a>
+          <a href="" class="dropdown-item" type="button">Sales</a>
       </div>
       </div>
     </li>
