@@ -19,7 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/pricelists', [PricelistController::class, 'store'])->name("pricelists.store");
-Route::get('/pricelists', function () {
-    return "Hello";
-});
+
