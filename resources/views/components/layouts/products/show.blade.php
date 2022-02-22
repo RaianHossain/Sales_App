@@ -30,7 +30,7 @@
       </div>
       <div class="col-12 col-sm-6">
         <h3 class="my-3">{{ $product->name }}</h3>
-        <a class="btn btn-warning">Edit</a>
+        <a href={{ route("products.edit", ['product'=> $product->id]) }} class="btn btn-warning">Edit</a>
         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
         <p>Quantity: {{ $product->quantity }}</p>
         <p>Box Quantity: {{ $product->box_quantity }}</p>

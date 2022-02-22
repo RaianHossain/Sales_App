@@ -87,32 +87,67 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    // public function update(Request $request, Product $product)
+    // {
+    //     dd($request);
+    //     try {
+
+    //         $request->validate([
+    //             'name' => 'required',
+    //             'description' => 'required',
+    //             'price' => 'required|numeric',
+    //             'quantity' => 'required|numeric',
+    //             'box_quantity' => 'required|numeric',
+    //             // 'picture' => 'image|mimes:png,jpg,jpeg,gif|dimensions:min_width=100,min_height=200|max:100',
+    //         ]);
+
+    //         /* $product = Product::find($request->id); */
+    //         $product->name = $request->name;
+    //         $product->description = $request->description;
+    //         $product->price = $request->price;
+    //         $product->quantity = $request->quantity;
+    //         $product->box_quantity = $request->box_quantity;
+
+    //         if ($request->hasFile('picture')) {
+    //             $product->picture = $this->uploadImage(request()->file('picture'));
+    //         }
+
+    //         $product->save();
+
+    //         return redirect()->route('products.index')->withMessage('Successfully Updated!');
+    //     } catch (QueryException $e) {
+    //         return redirect()->back()->withInput()->withErrors($e->getMessage());
+    //         // dd($e->getMessage());
+    //     }
+    // }
+
+    public function update(Request $request, Product $product)
     {
         try {
-
             $request->validate([
-                'name' => 'required|unique:products,name',
+                'name' => 'required',
                 'description' => 'required',
                 'price' => 'required|numeric',
                 'quantity' => 'required|numeric',
                 'box_quantity' => 'required|numeric',
-                // 'picture' => 'image|mimes:png,jpg,jpeg,gif|dimensions:min_width=100,min_height=200|max:100',
+                
             ]);
 
-            $product = Product::find($request->id);
-            $product->name = $request->name;
-            $product->description = $request->description;
-            $product->price = $request->price;
-            $product->quantity = $request->quantity;
-            $product->box_quantity = $request->box_quantity;
+            $requestData = [
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'box_quantity'=> $request->box_quantity
+            ];
 
-            if ($request->hasFile('picture')) {
-                $product->picture = $this->uploadImage(request()->file('picture'));
+            if($request->hasFile('picture')){
+                $requestData['picture'] = $this->uploadImage(request()->file('picture'));
             }
 
-            $product->save();
+            $product->update($requestData);
 
+            // $request->session()->flash('message', 'Task was successful!');
             return redirect()->route('products.index')->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());

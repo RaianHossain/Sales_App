@@ -44,6 +44,12 @@
                 <small class="card-text" style="font-size: 15px;">Per Box: {{ $product->box_quantity }}</small><br>
                 <small class="card-text" style="font-size: 15px;">Quantity: {{ $product->quantity }}</small><br>
                 <a href={{ route("products.show", ['product'=> $product->id]) }} class="btn btn-primary">Details</a>
+                <form style="display:inline" action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
+                    @csrf
+                    @method('delete')
+                    
+                    <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-danger" type="submit">Delete</button>
+                </form>
                 
             </div>
             </div>
