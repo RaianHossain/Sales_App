@@ -6,6 +6,17 @@
       <li class="breadcrumb-item"><a href="#">Product</a></li>
       <li class="breadcrumb-item active">Pricelist</li>
   </x-elements.breadcrumb>
+
+  @if ($errors->any())
+  <div class="alert alert-danger">
+      <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+  </div>
+@endif
+
 <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -35,7 +46,14 @@
                       <td>{{ $pricelist->name }}</td>
                       <td>{{ $pricelist->discount_percentage }}</td>
                       <td>{{ $pricelist->minimum_order }}</td>
-                      <td><a class="btn btn-warning" href="#">Edit</a>  <a class="btn btn-danger" href="#">Delete</a></td>
+                      <td>
+                        <a class="btn btn-primary" href={{ route("pricelists.edit", $pricelist->id) }}>Edit</a>
+                        <form action={{ route("pricelists.destroy", $pricelist->id) }} method="POST" class="d-inline">
+                          @csrf
+                          @method("DELETE")
+                          <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                      </td>
                     </tr>
                   @endforeach
                   

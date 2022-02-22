@@ -41,6 +41,11 @@ Route::get('/pricelists', [PricelistController::class, 'index'])->name("pricelis
 Route::get('/pricelists/create', [PricelistController::class, 'create'])->name("pricelists.create");
 Route::post('/pricelists', [PricelistController::class, 'store'])->name("pricelists.store");
 
+Route::get('/pricelists/{id}/edit', [PricelistController::class, 'edit'])->name("pricelists.edit");
+Route::post('/pricelists/{id}', [PricelistController::class, 'update'])->name("pricelists.update");
+Route::delete('/pricelists/{id}', [PricelistController::class, 'destroy'])->name("pricelists.destroy");
+
+
 // order_to_invoice routes below
 
 Route::get('/orders_to_invoice', [OrdertoInvoiceController::class, 'index'])->name("orders_to_invoice.index");
