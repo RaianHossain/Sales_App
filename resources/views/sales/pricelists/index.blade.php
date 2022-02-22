@@ -7,15 +7,16 @@
       <li class="breadcrumb-item active">Pricelist</li>
   </x-elements.breadcrumb>
 
-  @if (session('message'))
+<section class="content">
+    <div class="container-fluid">
+
+@if (session('message'))
   <div class="alert alert-success">
       <span class="close" data-dismiss="alert">&times;</span>
       <strong>{{ session('message') }}.</strong>
   </div>
   @endif
 
-<section class="content">
-    <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -57,11 +58,13 @@
                   
                   </tbody>
                   <tfoot>
-                  <tr>
-                    <th>Pricelist Name</th>
-                    <th>Currency</th>
-                   
-                  </tr>
+                    <tr>
+                      <th>Pricelist Name</th>
+                      <th>Discounted Percentage</th>
+                      <th>Minimum order</th>
+                      <th>Actions</th>
+                      
+                    </tr>
                   </tfoot>
                 </table>
             </div>

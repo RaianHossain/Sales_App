@@ -8,11 +8,11 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view("components.layouts.orders.index");
+        return view("sales.orders.index");
     }
-    
+
     public function create()
     {
-        return view("components.layouts.orders.create");
+        return view("sales.orders.create");
     }
 }

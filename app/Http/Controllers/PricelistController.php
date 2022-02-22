@@ -11,19 +11,20 @@ class PricelistController extends Controller
     public function index()
     {
         $pricelists = Pricelist::latest()->get();
-        return view("components.layouts.pricelists.index", ['pricelists' => $pricelists]);
-    }
-    
-    public function create()
-    {
-        return view("components.layouts.pricelists.create");
+        return view("sales.pricelists.index", ['pricelists' => $pricelists]);
     }
 
-    public function store(Request $request){
-        
-        try{
+    public function create()
+    {
+        return view("sales.pricelists.create");
+    }
+
+    public function store(Request $request)
+    {
+
+        try {
             $request->validate([
-                'name'=> 'required|unique:pricelists,name',
+                'name' => 'required|unique:pricelists,name',
                 'discount_percentage' => 'required|numeric',
                 'minimum_order' => 'required|numeric'
             ]);
@@ -36,22 +37,23 @@ class PricelistController extends Controller
 
             // $request->session()->flash('message', 'Task was successful!');
             return redirect()->route('pricelists.index')->withMessage('Successfully Created!');
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
         }
-
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $pricelist = Pricelist::find($id);
-        return view("components.layouts.pricelists.edit", ['pricelist' => $pricelist]);
+        return view("sales.pricelists.edit", ['pricelist' => $pricelist]);
     }
 
-    public function update(Request $request, $id){
-        try{
+    public function update(Request $request, $id)
+    {
+        try {
             $request->validate([
-                'name'=> 'required|unique:pricelists,name,'.$id,
+                'name' => 'required|unique:pricelists,name,' . $id,
                 'discount_percentage' => 'required|numeric',
                 'minimum_order' => 'required|numeric'
             ]);
@@ -64,20 +66,21 @@ class PricelistController extends Controller
 
             // $request->session()->flash('message', 'Task was successful!');
             return redirect()->route('pricelists.index')->withMessage('Successfully Updated!');
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
         }
     }
 
-    public function destroy($id){
-        try{
+    public function destroy($id)
+    {
+        try {
             $pricelist = Pricelist::find($id);
             $pricelist->delete();
 
             // $request->session()->flash('message', 'Task was successful!');
             return redirect()->route('pricelists.index')->withMessage('Successfully Deleted!');
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
         }

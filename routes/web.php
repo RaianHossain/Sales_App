@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('components.layouts.landing');
+    return view('sales.landing');
 })->name("landing");
 
 Route::get('/orders', [OrderController::class, 'index'])->name("orders.index");

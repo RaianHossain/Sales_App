@@ -8,11 +8,11 @@ class OrdertoInvoiceController extends Controller
 {
     public function index()
     {
-        return view("components.layouts.orders_to_invoice.index");
+        return view("sales.orders_to_invoice.index");
     }
-    
+
     public function create()
     {
-        return view("components.layouts.orders_to_invoice.create");
+        return view("sales.orders_to_invoice.create");
     }
 }

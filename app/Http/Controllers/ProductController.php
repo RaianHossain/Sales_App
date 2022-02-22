@@ -12,17 +12,17 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        return view("components.layouts.products.index", ['products' => $products]);
+        return view("sales.products.index", ['products' => $products]);
     }
 
     public function create()
     {
-        return view("components.layouts.products.create");
+        return view("sales.products.create");
     }
 
     public function product_details()
     {
-        return view("components.layouts.products.product_details");
+        return view("sales.products.product_details");
     }
 
     public function uploadImage($file)
@@ -74,7 +74,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('components.layouts.products.show', [
+        return view('sales.products.show', [
             'product' => $product
         ]);
     }
@@ -82,7 +82,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('components.layouts.products.edit', [
+        return view('sales.products.edit', [
             'product' => $product
         ]);
     }
@@ -130,7 +130,7 @@ class ProductController extends Controller
                 'price' => 'required|numeric',
                 'quantity' => 'required|numeric',
                 'box_quantity' => 'required|numeric',
-                
+
             ]);
 
             $requestData = [
@@ -138,10 +138,10 @@ class ProductController extends Controller
                 'description' => $request->description,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
-                'box_quantity'=> $request->box_quantity
+                'box_quantity' => $request->box_quantity
             ];
 
-            if($request->hasFile('picture')){
+            if ($request->hasFile('picture')) {
                 $requestData['picture'] = $this->uploadImage(request()->file('picture'));
             }
 
@@ -165,7 +165,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
-        return view('components.layouts.products.index', [
+        return view('sales.products.index', [
             'products' => $products
         ]);
     }

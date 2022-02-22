@@ -1,19 +1,6 @@
 <x-master>
 
-    <!-- <div class="row">
-        <div class="col-md-10 offset-md-12">
-            <div class="col-3">
-                <div class="form-group">
-                    <label>Order By:</label>
-                    <select class="select2" style="width: 100%;">
-                        <option selected>Title</option>
-                        <option>Date</option>
-                    </select>
-                </div>
-            </div>
-
-    </div>
-    </div> -->
+    
 
     <x-elements.breadcrumb>
       <x-slot name="title">
@@ -25,24 +12,27 @@
 
 {{-- end --}}
 
-@if (session('message'))
+
+<section class="content">
+    <div class="container-fluid">
+        <div>
+    <a href={{ route("products.create") }} class="btn btn-primary mb-2">Create</a>
+        </div>
+   @if (session('message'))
     <div class="alert alert-success">
         <span class="close" data-dismiss="alert">&times;</span>
         <strong>{{ session('message') }}.</strong>
     </div>
-@endif
-<section class="content">
-    <div class="container-fluid">
-    <a href={{ route("products.create") }} class="btn btn-primary mb-2">Create</a>
+@endif 
     <div class="row">
         @foreach ($products as $product)
         <div class="col-md-3">
             <div class="card">
             <div class="card-body">
                 <h5 class="card-title"><b>{{ $product->name }}</b></h5><br>
-                <small class="card-text" style="font-size: 15px;">Price: {{ $product->price }}</small><br>
-                <small class="card-text" style="font-size: 15px;">Per Box: {{ $product->box_quantity }}</small><br>
-                <small class="card-text" style="font-size: 15px;">Quantity: {{ $product->quantity }}</small><br>
+                <div class="card-text mb-1"><small style="font-size: 15px;">Price: {{ $product->price }}</small><br/>
+                <small style="font-size: 15px;">Per Box: {{ $product->box_quantity }}</small><br/>
+                <small  style="font-size: 15px;">Quantity: {{ $product->quantity }}</small></div>
                 <a href={{ route("products.show", ['product'=> $product->id]) }} class="btn btn-primary">Details</a>
                 <form style="display:inline" action="{{ route('products.destroy', ['product' => $product->id]) }}" method="post">
                     @csrf
