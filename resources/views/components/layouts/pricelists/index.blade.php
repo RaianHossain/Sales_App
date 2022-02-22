@@ -7,15 +7,12 @@
       <li class="breadcrumb-item active">Pricelist</li>
   </x-elements.breadcrumb>
 
-  @if ($errors->any())
-  <div class="alert alert-danger">
-      <ul>
-          @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-      </ul>
+  @if (session('message'))
+  <div class="alert alert-success">
+      <span class="close" data-dismiss="alert">&times;</span>
+      <strong>{{ session('message') }}.</strong>
   </div>
-@endif
+  @endif
 
 <section class="content">
     <div class="container-fluid">

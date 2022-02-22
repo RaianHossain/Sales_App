@@ -18,7 +18,7 @@
             </ul>
         </div>
   @endif
-  <form action="{{ route('pricelists.store') }}" method="post">
+  <form action="{{ route('pricelists.store') }}"  method="post">
       <div>
          @csrf
           <div class="row m-4">

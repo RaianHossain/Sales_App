@@ -24,6 +24,13 @@
   </x-elements.breadcrumb>
 
 {{-- end --}}
+
+@if (session('message'))
+    <div class="alert alert-success">
+        <span class="close" data-dismiss="alert">&times;</span>
+        <strong>{{ session('message') }}.</strong>
+    </div>
+@endif
 <section class="content">
     <div class="container-fluid">
     <a href={{ route("products.create") }} class="btn btn-primary mb-2">Create</a>
@@ -36,9 +43,8 @@
                 <small class="card-text" style="font-size: 15px;">Price: {{ $product->price }}</small><br>
                 <small class="card-text" style="font-size: 15px;">Per Box: {{ $product->box_quantity }}</small><br>
                 <small class="card-text" style="font-size: 15px;">Quantity: {{ $product->quantity }}</small><br>
-                <a href="#" class="btn btn-primary">Details</a>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+                <a href={{ route("products.show", ['product'=> $product->id]) }} class="btn btn-primary">Details</a>
+                
             </div>
             </div>
         </div>

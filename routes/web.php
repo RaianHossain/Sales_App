@@ -31,6 +31,8 @@ Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.c
 Route::get('/products', [ProductController::class, 'index'])->name("products.index");
 Route::get('/products/create', [ProductController::class, 'create'])->name("products.create");
 Route::get('/products/product_details', [ProductController::class, 'product_details'])->name("products.details");
+Route::post('/products', [ProductController::class, 'store'])->name("products.store");
+Route::get('/products/{product}', [ProductController::class, 'show'])->name("products.show");
 
 
 
