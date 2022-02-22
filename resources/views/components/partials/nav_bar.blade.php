@@ -22,7 +22,7 @@
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,20 +36,20 @@
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Invoice
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" type="button">Order to Invoice</a>
+          <a href={{ route("orders_to_invoice.index") }} class="dropdown-item" type="button">Order to Invoice</a>
           <a class="dropdown-item" type="button">Order to Upsell</a>
       </div>
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
