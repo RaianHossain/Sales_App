@@ -37,8 +37,9 @@ Route::get('/products/product_details', [ProductController::class, 'product_deta
 // pricelist Route below
 
 
-Route::get('/pricelist', [PricelistController::class, 'index'])->name("pricelists.index");
-Route::get('/pricelist/create', [PricelistController::class, 'create'])->name("pricelists.create");
+Route::get('/pricelists', [PricelistController::class, 'index'])->name("pricelists.index");
+Route::get('/pricelists/create', [PricelistController::class, 'create'])->name("pricelists.create");
+Route::post('/pricelists', [PricelistController::class, 'store'])->name("pricelists.store");
 
 // order_to_invoice routes below
 
