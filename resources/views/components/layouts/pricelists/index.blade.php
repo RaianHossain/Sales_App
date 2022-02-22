@@ -24,25 +24,21 @@
                     <th>Pricelist Name</th>
                     <th>Discounted Percentage</th>
                     <th>Minimum order</th>
+                    <th>Actions</th>
                     
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Exclusive Customer</td>
-                    <td>10</td>
-                    <td>100</td>
-                  </tr>
-                  <tr>
-                    <td>Commercial Customer</td>
-                    <td>8</td>
-                    <td>80</td>
-                  </tr>
-                  <tr>
-                    <td>New Customer</td>
-                    <td>5</td>
-                    <td>50</td>
-                  </tr>
+                  @foreach ($pricelists as $pricelist)
+
+                    <tr>
+                      <td>{{ $pricelist->name }}</td>
+                      <td>{{ $pricelist->discount_percentage }}</td>
+                      <td>{{ $pricelist->minimum_order }}</td>
+                      <td><a class="btn btn-warning" href="#">Edit</a>  <a class="btn btn-danger" href="#">Delete</a></td>
+                    </tr>
+                  @endforeach
+                  
                   
                   </tbody>
                   <tfoot>
