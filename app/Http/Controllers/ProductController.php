@@ -14,7 +14,7 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         return view("components.layouts.products.index", ['products' => $products]);
     }
-    
+
     public function create()
     {
         return view("components.layouts.products.create");
@@ -26,28 +26,28 @@ class ProductController extends Controller
     }
 
     public function uploadImage($file)
-    {        
-        $fileName = time().'.'.$file->getClientOriginalExtension();
+    {
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
         Image::make($file)
-                ->resize(200, 200)
-                ->save(storage_path().'/app/public/images/'.$fileName);
+            ->resize(200, 200)
+            ->save(storage_path() . '/app/public/images/' . $fileName);
         return $fileName;
     }
 
     public function store(Request $request)
     {
-        
 
-        
-        try{
+
+
+        try {
 
             $imageValidationRule = 'image|mimes:png,jpg,jpeg,gif|dimensions:min_width=100,min_height=200|max:100';
             // dd($request->isMethod('post'));
-            if($request->isMethod('post')){
-                $imageValidationRule = 'required|'.$imageValidationRule;
+            if ($request->isMethod('post')) {
+                $imageValidationRule = 'required|' . $imageValidationRule;
             }
             $request->validate([
-                'name'=> 'required|unique:products,name',
+                'name' => 'required|unique:products,name',
                 'description' => 'required',
                 'price' => 'required|numeric',
                 'quantity' => 'required|numeric',
@@ -66,7 +66,7 @@ class ProductController extends Controller
 
             // $request->session()->flash('message', 'Task was successful!');
             return redirect()->route('products.index')->withMessage('Successfully Created!');
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
         }
@@ -79,5 +79,59 @@ class ProductController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('components.layouts.products.edit', [
+            'product' => $product
+        ]);
+    }
 
+    public function update(Request $request, $id)
+    {
+        try {
+
+            $request->validate([
+                'name' => 'required|unique:products,name',
+                'description' => 'required',
+                'price' => 'required|numeric',
+                'quantity' => 'required|numeric',
+                'box_quantity' => 'required|numeric',
+                // 'picture' => 'image|mimes:png,jpg,jpeg,gif|dimensions:min_width=100,min_height=200|max:100',
+            ]);
+
+            $product = Product::find($request->id);
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->quantity = $request->quantity;
+            $product->box_quantity = $request->box_quantity;
+
+            if ($request->hasFile('picture')) {
+                $product->picture = $this->uploadImage(request()->file('picture'));
+            }
+
+            $product->save();
+
+            return redirect()->route('products.index')->withMessage('Successfully Updated!');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
+            // dd($e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index')->withMessage('Successfully Deleted!');
+    }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
+        return view('components.layouts.products.index', [
+            'products' => $products
+        ]);
+    }
 }
