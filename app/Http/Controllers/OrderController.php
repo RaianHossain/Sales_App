@@ -15,4 +15,5 @@ class OrderController extends Controller
     {
         return view("components.layouts.orders.create");
     }
+    
 }
