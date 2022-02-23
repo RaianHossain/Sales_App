@@ -1,12 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
 use App\Http\Controllers\PricelistController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Route;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('sales.landing');
-})->name("landing");
+    return view('welcome');
+});
 
+Route::get('/dashboard', function () {
+    return view('sales.landing');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+//exits route
 Route::get('/orders', [OrderController::class, 'index'])->name("orders.index");
 Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.create");
 
