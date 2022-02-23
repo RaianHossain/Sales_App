@@ -71,9 +71,14 @@
   <ul class="navbar-nav ml-auto">
     <!-- Navbar Search -->
     <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
+      
+
+      <form action="{{ route('logout') }}" method="POST" ;">
+          @csrf
+          <button type="submit">Logout</button>
+      </form>
+      
+      <!-- <a href={{ route('logout') }}>Logout</a> -->
       <div class="navbar-search-block">
         <form class="form-inline">
           <div class="input-group input-group-sm">
