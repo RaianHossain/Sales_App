@@ -148,7 +148,7 @@ class ProductController extends Controller
             $product->update($requestData);
 
             // $request->session()->flash('message', 'Task was successful!');
-            return redirect()->route('products.index')->withMessage('Successfully Updated!');
+            return redirect()->route('products.show', ['product'=>$product->id])->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
