@@ -6,6 +6,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
 use App\Http\Controllers\PricelistController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
+use App\Models\Role;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,16 +25,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Role
+Route::get('/users/users_details', [UserController::class, 'details'])->name('users.details');
+Route::get('/users/location', function () {
+    return view('sales.users.location');
+})->name('users.location');
+// Route::get('userrole', [UserController::class, 'roleindex'])->name('users.roleindex');
+
+Route::resource('roles', RoleController::class);
+Route::resource('users', UserController::class);
+
+
+
 Route::get('/dashboard', function () {
     return view('sales.landing');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 //logout
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->middleware('auth')
-                ->name('logout');
+    ->middleware('auth')
+    ->name('logout');
 
 
 //exits route

@@ -13,7 +13,7 @@
           <img src={{ asset("ui/dist/img/user2-160x160.jpg") }} class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">alsdjf;l</a>
+          <a href="{{ route("users.details") }}" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
@@ -687,8 +687,34 @@
                   </li>
                 </ul>
               </li>
+ @can('user-management')
+   
+ 
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>
+                    User Management
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route("roles.index") }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Role</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route("users.index") }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>User</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
               
-                
+    @endcan            
               
       
       </nav>

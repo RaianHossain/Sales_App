@@ -41,7 +41,7 @@ class ProductController extends Controller
 
         try {
 
-            $imageValidationRule = 'image|mimes:png,jpg,jpeg,gif|dimensions:min_width=100,min_height=200|max:100';
+            $imageValidationRule = 'image|mimes:png,jpg,jpeg,gif|max:10000';
             // dd($request->isMethod('post'));
             if ($request->isMethod('post')) {
                 $imageValidationRule = 'required|' . $imageValidationRule;
@@ -148,7 +148,7 @@ class ProductController extends Controller
             $product->update($requestData);
 
             // $request->session()->flash('message', 'Task was successful!');
-            return redirect()->route('products.index')->withMessage('Successfully Updated!');
+            return redirect()->route('products.show', ['product' => $product->id])->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
