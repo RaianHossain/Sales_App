@@ -12,4 +12,9 @@ class Customer extends Model
     protected $guarded = [
         
     ];
+
+    public function pricelist()
+    {
+        return $this->belongsTo(Pricelist::class);
+    }
 }

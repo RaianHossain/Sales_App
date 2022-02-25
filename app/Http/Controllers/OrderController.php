@@ -51,6 +51,14 @@ class OrderController extends Controller
             }
         }
 
+        for ($i = 0; $i<count($products); $i++){
+            // dd($products[$i]);
+            $productToUpdate = Product::find($products[$i]);
+            // dd($productToUpdate);
+            $productToUpdate->quantity = $productToUpdate->quantity - $quantities[$i];
+            $productToUpdate->update();
+        }
+
         return redirect()->route('orders.index');
     }
 }

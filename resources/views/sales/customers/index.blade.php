@@ -34,6 +34,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
+                                        <th>Pricelist</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -41,12 +42,14 @@
                                 <tbody>
                                     @foreach ($customers as $customer)
                                         <tr>
-                                            {{-- <td>{{ ++$id }}</td> --}}
+                                            
                                             <td>{{ $customer->name }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>{{ $customer->phone }}</td>
                                             <td>{{ $customer->address }}</td>
-                                            {{-- <td>
+                                            <td>{{ $customer->pricelist->name }}</td>
+                                            
+                                            <td>
                                                 <a class="btn btn-primary"
                                                     href={{ route('customers.edit', $customer->id) }}>Edit</a>
                                                     
@@ -57,7 +60,7 @@
                                                     @method("DELETE")
                                                     <button class="btn btn-danger" type="submit">Delete</button>
                                                 </form>
-                                            </td> --}}
+                                            </td>
                                         </tr>
                                     @endforeach
 

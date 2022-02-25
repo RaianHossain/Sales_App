@@ -17,7 +17,7 @@
           <button class="dropdown-item" type="button">Quotation Order</button>
           <a href={{ route("orders.index") }}  class="dropdown-item" type="button">Orders</a>
           <a class="dropdown-item" type="button">Sales Teams</a>
-          <a class="dropdown-item" type="button">Customers</a>
+          <a href="{{ route('customers.index') }}" class="dropdown-item" type="button">Customers</a>
       </div>
       </div>
     </li>
