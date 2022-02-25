@@ -51,8 +51,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 
 //exits route
-Route::get('/orders', [OrderController::class, 'index'])->name("orders.index");
-Route::get('/orders/create', [OrderController::class, 'create'])->name("orders.create");
+Route::resource('orders', OrderController::class);
 
 
 // Products Route below
