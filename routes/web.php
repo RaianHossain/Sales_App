@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
@@ -22,7 +23,7 @@ use App\Models\Role;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('sales.landing');
 });
 
 
@@ -86,3 +87,11 @@ Route::delete('/pricelists/{id}', [PricelistController::class, 'destroy'])->name
 
 Route::get('/orders_to_invoice', [OrdertoInvoiceController::class, 'index'])->name("orders_to_invoice.index");
 Route::get('/orders_to_invoice/create', [OrdertoInvoiceController::class, 'create'])->name("orders_to_invoice.create");
+
+
+// customer routes below
+
+Route::get('/customers', [CustomerController::class, 'index'])->name("customers.index");
+Route::get('/customers/create', [CustomerController::class,'create'])->name("customers.create");
+Route::post('/customers', [CustomerController::class,'store'])->name("customers.store");
+
