@@ -52,7 +52,9 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 
 //exits route
+Route::get('/orders/search', [OrderController::class, 'search'])->name('orders.search');
 Route::resource('orders', OrderController::class);
+
 
 
 // Products Route below

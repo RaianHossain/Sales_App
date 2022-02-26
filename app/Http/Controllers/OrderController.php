@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\Pricelist;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('products')->get();
+        $orders = Order::with('products')->latest()->get();
 
         return view('sales.orders.index', compact('orders'));
     }
@@ -23,7 +25,8 @@ class OrderController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('sales.orders.create', compact('products'));
+        $check = 0;
+        return view('sales.orders.create', compact('products', 'check'));
     }
 
     public function store(Request $request)
@@ -32,6 +35,17 @@ class OrderController extends Controller
             
         // ]);
         // dd($request);
+        // dd($request->newCustomer);
+        if($request->newCustomer == 1){
+            Customer::create([
+                'name' => $request->customer_name,
+                'email' => $request->customer_email,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'pricelist_id' => 1,
+                'orderCount' => 1
+            ]);
+        }
         $order = Order::create([
             'customer_name' => $request->customer_name,
             'customer_email' => $request->customer_email,
@@ -41,6 +55,16 @@ class OrderController extends Controller
             'payment_method' => $request->payment_method,
             'user_id' => $request->user_id
         ]);
+
+        $commercialCutomer = Pricelist::where('name', 'Commercial Customer')->first();
+        // dd($commercialCutomer->minimum_order);
+        $customerToUpdate = Customer::where('email', $request->customer_email)->first();
+        $customerToUpdate->orderCount = $customerToUpdate->orderCount + 1;
+        if($customerToUpdate->orderCount >=  $commercialCutomer->minimum_order){
+            $customerToUpdate->pricelist_id = $commercialCutomer->id;
+        }
+        $customerToUpdate->update();
+
 
         $products = $request->input('products', []);
         // dd($products);
@@ -60,5 +84,18 @@ class OrderController extends Controller
         }
 
         return redirect()->route('orders.index');
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->email);
+        $customerSearch = Customer::where('email', $request->email)->first();
+        $products = Product::all();
+        $found = 1;
+        if(isset($customerSearch->name)){
+            $found= 2;
+        }
+        // return view('sales.orders.create', compact('products'));
+        return view('sales.orders.create', ['customer' => $customerSearch, 'products'=>$products, 'check'=>1, 'found'=>$found]);
     }
 }

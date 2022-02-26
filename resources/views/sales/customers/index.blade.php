@@ -34,6 +34,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
+                                        <th>Total Order</th>
                                         <th>Pricelist</th>
                                         <th>Action</th>
 
@@ -47,6 +48,7 @@
                                             <td>{{ $customer->email }}</td>
                                             <td>{{ $customer->phone }}</td>
                                             <td>{{ $customer->address }}</td>
+                                            <td>{{ $customer->orderCount }}</td>
                                             <td>{{ $customer->pricelist->name }}</td>
                                             
                                             <td>

@@ -79,7 +79,7 @@
                             </td>
 
                             <td>
-                                {{ $order->user()->name ?? '' }}
+                                {{ $order->user->name ?? '' }}
                             </td>
 
                             <td>

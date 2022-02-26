@@ -10,18 +10,53 @@
 
     <section class="content">
     <div class="container-fluid">
+
+    <!-- @if(isset($found) && $found==1)
+        <h1>hello</h1>
+    @endif -->
+
+    <form action="{{ route('orders.search') }}" method="get">
+        <div class="form-group">
+            <label for="search">Search Customer:</label>
+            <input class="form-control" id="search" type="text" name="email">
+            <button type="submit" class="btn btn-warning">Search</button>
+        </div>            
+    </form>
+
+    @if(!isset($customer) && $check == 1)
+    <div class="p-3 mb-2 bg-warning text-dark">This is a new customer</div>
+    @endif
+
     <div class="card">
     <!-- <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.order.title_singular') }}
     </div> -->
 
     <div class="card-body">
+        
         <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            
+            @if(isset($found) && $found==1)
+            <input type="hidden" name="newCustomer" value="1">
+            @endif
+
+
             <div class="form-group {{ $errors->has('customer_name') ? 'has-error' : '' }}">
                 <!-- <label for="customer_name">{{ trans('cruds.order.fields.customer_name') }}*</label> -->
                 <label for="customer_email">Customer Name</label>
+                
+                @if(!isset($customer))
                 <input type="text" id="customer_name" name="customer_name" class="form-control" value="{{ old('customer_name', isset($order) ? $order->customer_name : '') }}" required>
+
+                @else
+
+                <input type="text" id="customer_name" name="customer_name" class="form-control" value="{{ $customer->name }}" required>
+                @endif
+                
+                
+                
                 @if($errors->has('customer_name'))
                     <em class="invalid-feedback">
                         {{ $errors->first('customer_name') }}
@@ -34,7 +69,12 @@
             <div class="form-group {{ $errors->has('customer_email') ? 'has-error' : '' }}">
                 <!-- <label for="customer_email">{{ trans('cruds.order.fields.customer_email') }}</label> -->
                 <label for="customer_email">Customer Email</label>
+
+                @if(!isset($customer))
                 <input type="email" id="customer_email" name="customer_email" class="form-control" value="{{ old('customer_email', isset($order) ? $order->customer_email : '') }}">
+                @else
+                <input type="email" id="customer_email" name="customer_email" class="form-control" value="{{ $customer->email }}">
+                @endif
                 @if($errors->has('customer_email'))
                     <em class="invalid-feedback">
                         {{ $errors->first('customer_email') }}
@@ -52,7 +92,12 @@
                     <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
                     <!-- <label for="customer_name">{{ trans('cruds.order.fields.customer_name') }}*</label> -->
                     <label for="address">Address</label>
+                    @if(!isset($customer))
                     <input type="text" id="address" name="address" class="form-control" value="{{ old('address', isset($order) ? $order->address : '') }}" required>
+                    @else
+                    <input type="text" id="address" name="address" class="form-control" value="{{ $customer->address }}" required>
+                    @endif
+
                     @if($errors->has('address'))
                         <em class="invalid-feedback">
                             {{ $errors->first('address') }}
@@ -68,7 +113,13 @@
                     <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
                     <!-- <label for="customer_name">{{ trans('cruds.order.fields.customer_name') }}*</label> -->
                     <label for="phone">Phone</label>
+
+                    @if(!isset($customer))
                     <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone', isset($order) ? $order->phone : '') }}" required>
+                    @else
+                    <input type="text" id="phone" name="phone" class="form-control" value="{{ $customer->phone }}" required>
+                    @endif
+
                     @if($errors->has('phone'))
                         <em class="invalid-feedback">
                             {{ $errors->first('phone') }}
@@ -162,7 +213,7 @@
                                             <option value="">-- choose product --</option>
                                             @foreach ($products as $product)
                                                 <option value="{{ $product->id }}"{{ $oldProduct == $product->id ? ' selected' : '' }}>
-                                                    {{ $product->name }} (${{ number_format($product->price, 2) }})
+                                                    {{ $product->name }} (${{ number_format($product->price, 2) }}) ({{ number_format($product->quantity, 2) }}pcs)
                                                 </option>
                                             @endforeach
                                         </select>
