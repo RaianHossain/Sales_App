@@ -23,9 +23,10 @@ function showPosition() {
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     var positionInfo = "Your current position is (" + "Latitude: " + latitude + ", " + "Longitude: " + longitude + ")";
-                    document.getElementById("map").innerHTML = positionInfo;
+                    document.getElementById("result").innerHTML = positionInfo;
 
                     showMap(longitude, latitude);
+                    circlecolor(longitude, latitude);
                 });
             } else {
                 alert("Sorry, your browser does not support HTML5 geolocation.");
@@ -42,14 +43,19 @@ function showPosition() {
                 // starting position [lng, lat]
                 zoom: 18 // starting zoom
             });
+            var marker = new mapboxgl.Marker()
+                .setLngLat([longitude, latitude])
+                .addTo(map);
         }
+// function circlecolor(longitude, latitude) {
+//         var circle = L.circle([longitude, latitude], {
+//             color: 'red',
+//             fillColor: '#f03',
+//             fillOpacity: 0.5,
+//             radius: 500
+//         }).addTo(map);
+//     }
 
-        // var circle = L.circle([90.4015574, 23.870327], {
-        //     color: 'red',
-        //     fillColor: '#f03',
-        //     fillOpacity: 0.5,
-        //     radius: 500
-        // }).addTo(map);
     </script>
 </x-master>
 
