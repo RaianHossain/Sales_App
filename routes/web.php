@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
@@ -39,9 +40,7 @@ Route::resource('users', UserController::class);
 
 
 
-Route::get('/dashboard', function () {
-    return view('sales.landing');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 

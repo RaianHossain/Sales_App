@@ -54,6 +54,11 @@
                         </th>
 
                         <th>
+                            <!-- {{ trans('cruds.order.fields.products') }} -->
+                            Total Amount
+                        </th>
+
+                        <th>
                             <!-- {{ trans('cruds.order.fields.customer_email') }} -->
                             Status
                         </th>
@@ -94,6 +99,8 @@
                                 @endforeach
                                 </ul>
                             </td>
+
+                            <td>{{ $order->totalAmount }}</td>
 
                             <td>
                                 {{ $order->status ?? '' }}

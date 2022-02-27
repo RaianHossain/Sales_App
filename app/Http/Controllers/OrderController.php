@@ -46,15 +46,15 @@ class OrderController extends Controller
                 'orderCount' => 1
             ]);
         }
-        $order = Order::create([
-            'customer_name' => $request->customer_name,
-            'customer_email' => $request->customer_email,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'status' => $request->status,
-            'payment_method' => $request->payment_method,
-            'user_id' => $request->user_id
-        ]);
+        // $order = Order::create([
+        //     'customer_name' => $request->customer_name,
+        //     'customer_email' => $request->customer_email,
+        //     'address' => $request->address,
+        //     'phone' => $request->phone,
+        //     'status' => $request->status,
+        //     'payment_method' => $request->payment_method,
+        //     'user_id' => $request->user_id
+        // ]);
 
         $commercialCutomer = Pricelist::where('name', 'Commercial Customer')->first();
         // dd($commercialCutomer->minimum_order);
@@ -66,23 +66,41 @@ class OrderController extends Controller
         $customerToUpdate->update();
 
 
+        
+
+        $totalAmount = 0;
         $products = $request->input('products', []);
-        // dd($products);
         $quantities = $request->input('quantities', []);
+
+        for ($i = 0; $i<count($products); $i++){
+            // dd($products[$i]);
+
+            $productToUpdate = Product::find($products[$i]);
+            // dd($productToUpdate);
+            $productToUpdate->quantity = $productToUpdate->quantity - $quantities[$i];
+            $totalAmount = $productToUpdate->price * $quantities[$i];
+            $productToUpdate->update();
+        }
+
+        $order = Order::create([
+            'customer_name' => $request->customer_name,
+            'customer_email' => $request->customer_email,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'status' => $request->status,
+            'payment_method' => $request->payment_method,
+            'user_id' => $request->user_id,
+            'totalAmount' => $totalAmount
+        ]);
+        
+        
+        // dd($products);
+        
         for ($product=0; $product < count($products); $product++) {
             if ($products[$product] != '') {
                 $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
             }
         }
-
-        for ($i = 0; $i<count($products); $i++){
-            // dd($products[$i]);
-            $productToUpdate = Product::find($products[$i]);
-            // dd($productToUpdate);
-            $productToUpdate->quantity = $productToUpdate->quantity - $quantities[$i];
-            $productToUpdate->update();
-        }
-
         return redirect()->route('orders.index');
     }
 
