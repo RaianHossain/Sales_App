@@ -8,7 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
 use App\Http\Controllers\PricelistController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\QuotationsController;
+use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Order;
@@ -31,14 +31,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::resource('quotations', QuotationsController::class);
+Route::resource('quotations', QuotationController::class);
 
 require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('sales.landing');
-    })->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
     // Route::get('/', function () {
     //     return view('sales.landing');
@@ -46,14 +44,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-<<<<<<< HEAD
     //logout
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth')
         ->name('logout');
-=======
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
->>>>>>> 8029ccf123a1bb1e9f4dae336d9879bb1fc763a2
 
     //Role
     Route::get('/users/users_details', [UserController::class, 'details'])->name('users.details');

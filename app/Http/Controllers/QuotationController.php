@@ -9,7 +9,7 @@ use App\Models\Pricelist;
 use App\Models\Customer;
 use App\Models\Order;
 
-class QuotationsController extends Controller
+class QuotationController extends Controller
 {
 
     public function index()
@@ -39,16 +39,24 @@ class QuotationsController extends Controller
         ]);
 
         #store array
-        Quotation::create([
+        $quotation = Quotation::create([
             'name' => $request->name,
             'email' => $request->email,
             'address' => $request->address,
             'phone' => $request->phone,
-            'product_id' => $request->product_id->attach($request->product_id),
-            'quantity' => $request->quantity->attach($request->quantity),
+            // 'product_id' => $request->product_id->attach($request->product_id),
+            // 'quantity' => $request->quantity->attach($request->quantity),
         ]);
+        $products = $request->input('products', []);
+        $quantities = $request->input('quantities', []);
 
-        return redirect()->route('quotations.index')->with('success', 'Quotation created successfully');
+        for ($product = 0; $product < count($products); $product++) {
+            if ($products[$product] != '') {
+                $quotation->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
+            }
+        }
+
+        return redirect()->route('welcome')->with('success', 'Quotation created successfully');
     }
 
     public function show(Quotation $quotation)

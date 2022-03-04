@@ -71,7 +71,7 @@
                             </td>
                             <td>
                                 <ul>
-                                @foreach($quotation->products as $key => $item)
+                                    @foreach($quotation->products as $key => $item)
                                     <li>{{ $item->name }} ({{ $item->pivot->quantity }} x ${{ $item->price }})</li>
                                 @endforeach
                                 </ul>

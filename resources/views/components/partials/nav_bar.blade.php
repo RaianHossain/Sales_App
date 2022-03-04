@@ -14,7 +14,7 @@
           Orders
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button">Quotation Order</button>
+          <a class="dropdown-item" href={{ route("quotations.index") }} type="button">Quotation Order</a>
           <a href={{ route("orders.index") }}  class="dropdown-item" type="button">Orders</a>
           <a class="dropdown-item" type="button">Sales Teams</a>
           <a href="{{ route('customers.index') }}" class="dropdown-item" type="button">Customers</a>

@@ -15,9 +15,9 @@ class CreateQuotationsTable extends Migration
             $table->string('email')->nullable();
             $table->string('address',255)->nullable();
             $table->string('phone');
-            $table->unsignedBigInteger('product_id')->Pluck('id')->toArray();
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('quantity');
+            // $table->unsignedBigInteger('product_id')->Pluck('id')->toArray();
+            // $table->foreign('product_id')->references('id')->on('products');
+            // $table->integer('quantity');
             $table->timestamps();
         });
     }

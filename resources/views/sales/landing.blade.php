@@ -18,7 +18,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ $ordersToday }}</h3>
+                <h3>{{ $ordersToday ?? '0'}}</h3>
 
                 <p>New Orders</p>
               </div>
@@ -33,8 +33,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{ $totalCustomers }}</h3>
-                <!-- <h3>{{ $totalCustomers }}<sup style="font-size: 20px">%</sup></h3> -->
+                <h3>{{ $totalCustomers ?? '0'}}</h3>
 
                 <p>Total Customers</p>
               </div>
@@ -49,7 +48,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{ $newCustomersToday }}</h3>
+                <h3>{{ $newCustomersToday ?? '0'}}</h3>
 
                 <p>Today's New Customer</p>
               </div>
@@ -64,7 +63,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ $totalEarningToday }}</h3>
+                <h3>{{ $totalEarningToday ?? '0' }}</h3>
 
                 <p>Today Earings</p>
               </div>
