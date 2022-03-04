@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
 use App\Http\Controllers\PricelistController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -97,3 +98,12 @@ Route::get('/orders_to_invoice/create', [OrdertoInvoiceController::class, 'creat
 // Route::post('/customers', [CustomerController::class,'store'])->name("customers.store");
 
 Route::resource('customers', CustomerController::class);
+
+// userprofile Routes below
+
+// Route::get('/profiles', [ProfileController::class, 'index'])->name("profiles.index");
+// Route::get('/profiles/create', [ProfileController::class,'create'])->name("profiles.create");
+// Route::post('/profiles', [ProfileController::class,'store'])->name("profiles.store");
+
+//Profile route 
+Route::resource('profiles', ProfileController::class);

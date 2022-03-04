@@ -581,7 +581,7 @@
               <p>Documentation</p>
             </a>
           </li> --}}
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+          <li class="nav-header">Features:</li>
           <li class="nav-item">
             <a href="{{ route("orders.index") }}" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
@@ -610,7 +610,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route("customers.index") }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customers</p>
                 </a>
@@ -687,6 +687,8 @@
                   </li>
                 </ul>
               </li>
+
+              
  @can('user-management')
    
  
