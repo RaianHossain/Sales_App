@@ -9,11 +9,62 @@
     </x-elements.breadcrumb>
 
     <section class="content">
+<<<<<<< HEAD
         <div class="container-fluid">
 
             <!-- @if (isset($found) && $found == 1)
 <h1>hello</h1>
 @endif -->
+=======
+        <script>
+
+            function showPosition() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                const latitude = position.coords.latitude;
+                                const longitude = position.coords.longitude;
+                                // var positionInfo = "Your current position is (" + "Latitude: " + latitude + ", " + "Longitude: " + longitude + ")";
+                                // document.getElementById("result").innerHTML = positionInfo;
+            
+                                $('#latitude').val(latitude);
+                                $('#longitude').val(longitude);
+                                document.getElementById("longitude").value = longitude;
+                                document.getElementById("latitude").value = latitude;
+
+
+                                // console.log('{{ csrf_token() }}');
+
+                                $.ajax({
+                                    url: '/user/location',
+                                    type: 'POST',
+                                    data: {
+                                        '_token': '{{ csrf_token() }}',
+                                        'latitude': latitude,
+                                        'longitude': longitude
+                                    },
+                                    success: function(data) {
+                                        console.log(data);
+                                    }, 
+                                    error: function(data) {
+                                        console.log(data);
+                                    }
+                                
+                                })
+
+
+                            });
+                        } else {
+                            alert("Sorry, your browser does not support HTML5 geolocation.");
+                        }
+                    }
+                    </script>
+    <div class="container-fluid">
+
+
+    <!-- @if(isset($found) && $found==1)
+        <h1>hello</h1>
+    @endif -->
+>>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
 
             <form action="{{ route('orders.search') }}" method="get">
                 <div class="form-group">
@@ -32,7 +83,19 @@
         {{ trans('global.create') }} {{ trans('cruds.order.title_singular') }}
     </div> -->
 
+<<<<<<< HEAD
                 <div class="card-body">
+=======
+    <div class="card-body">
+        
+        <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group" >
+            <button type="button" onclick="showPosition()">Sales location</button>
+            <input type="hidden" id="latitude" name="latitude"  {{ trans('cruds.order.fields.latitude') }}>
+            <input type="hidden" id="longitude" name="longitutde"  {{ trans('cruds.order.fields.longitutde') }} >
+            </div>
+>>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
 
                     <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -256,6 +319,24 @@
 
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
     </section>
 </x-master>
+=======
+             
+            <div>
+                <!-- <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}"> -->
+                <input class="btn btn-danger" type="submit" value="Save">
+            </div>
+        </form>
+
+
+    </div>
+</div>
+    </div>
+</section>
+
+
+</x-master>
+>>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
