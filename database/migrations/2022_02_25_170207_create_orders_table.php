@@ -24,7 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->string('payment_method');
             $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
+            $table->string('longitutde')->nullable();
             $table->timestamps();
         });
     }

@@ -27,7 +27,8 @@ class AlterCustomersTableAddPricelist extends Migration
     public function down()
     {
         Schema::table('customers', function (Blueprint $table) {
-            //
+            $table->dropForeign(['pricelist_id']);
+            $table->dropColumn('pricelist_id');
         });
     }
 }

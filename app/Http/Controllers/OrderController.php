@@ -31,12 +31,14 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $latitude = request()->input('latitude');
+        $longitutde = request()->input('longitude');
         // $request->validate([
-            
+
         // ]);
         // dd($request);
         // dd($request->newCustomer);
-        if($request->newCustomer == 1){
+        if ($request->newCustomer == 1) {
             Customer::create([
                 'name' => $request->customer_name,
                 'email' => $request->customer_email,
@@ -53,14 +55,18 @@ class OrderController extends Controller
             'phone' => $request->phone,
             'status' => $request->status,
             'payment_method' => $request->payment_method,
-            'user_id' => $request->user_id
+            'user_id' => $request->user_id,
+            // 'latitude' => $latude,
+            // 'longitude' => $longitude,
+            'latitude' => $request->latitude,
+            'longitutde' => $request->longitutde,
         ]);
 
         $commercialCutomer = Pricelist::where('name', 'Commercial Customer')->first();
         // dd($commercialCutomer->minimum_order);
         $customerToUpdate = Customer::where('email', $request->customer_email)->first();
         $customerToUpdate->orderCount = $customerToUpdate->orderCount + 1;
-        if($customerToUpdate->orderCount >=  $commercialCutomer->minimum_order){
+        if ($customerToUpdate->orderCount >=  $commercialCutomer->minimum_order) {
             $customerToUpdate->pricelist_id = $commercialCutomer->id;
         }
         $customerToUpdate->update();
@@ -69,13 +75,13 @@ class OrderController extends Controller
         $products = $request->input('products', []);
         // dd($products);
         $quantities = $request->input('quantities', []);
-        for ($product=0; $product < count($products); $product++) {
+        for ($product = 0; $product < count($products); $product++) {
             if ($products[$product] != '') {
                 $order->products()->attach($products[$product], ['quantity' => $quantities[$product]]);
             }
         }
 
-        for ($i = 0; $i<count($products); $i++){
+        for ($i = 0; $i < count($products); $i++) {
             // dd($products[$i]);
             $productToUpdate = Product::find($products[$i]);
             // dd($productToUpdate);
@@ -92,10 +98,10 @@ class OrderController extends Controller
         $customerSearch = Customer::where('email', $request->email)->first();
         $products = Product::all();
         $found = 1;
-        if(isset($customerSearch->name)){
-            $found= 2;
+        if (isset($customerSearch->name)) {
+            $found = 2;
         }
         // return view('sales.orders.create', compact('products'));
-        return view('sales.orders.create', ['customer' => $customerSearch, 'products'=>$products, 'check'=>1, 'found'=>$found]);
+        return view('sales.orders.create', ['customer' => $customerSearch, 'products' => $products, 'check' => 1, 'found' => $found]);
     }
 }
