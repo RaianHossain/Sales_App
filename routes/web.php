@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
@@ -45,10 +46,14 @@ Route::middleware('auth')->group(function () {
 
 
 
+<<<<<<< HEAD
     //logout
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
         ->middleware('auth')
         ->name('logout');
+=======
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+>>>>>>> 8029ccf123a1bb1e9f4dae336d9879bb1fc763a2
 
     //Role
     Route::get('/users/users_details', [UserController::class, 'details'])->name('users.details');
