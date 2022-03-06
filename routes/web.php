@@ -8,11 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
 use App\Http\Controllers\PricelistController;
 use App\Http\Controllers\ProductController;
-<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
-=======
-use App\Http\Controllers\QuotationController;
->>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Order;
@@ -131,18 +127,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-<<<<<<< HEAD
-Route::resource('customers', CustomerController::class);
-
-// userprofile Routes below
-
-// Route::get('/profiles', [ProfileController::class, 'index'])->name("profiles.index");
-// Route::get('/profiles/create', [ProfileController::class,'create'])->name("profiles.create");
-// Route::post('/profiles', [ProfileController::class,'store'])->name("profiles.store");
-
-//Profile route 
-Route::resource('profiles', ProfileController::class);
-=======
     // customer routes below
 
     // Route::get('/customers', [CustomerController::class, 'index'])->name("customers.index");
@@ -151,4 +135,3 @@ Route::resource('profiles', ProfileController::class);
 
     Route::resource('customers', CustomerController::class);
 });
->>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
