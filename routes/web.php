@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Order;
+use App\Models\Profile;
 use App\Models\User;
 use App\Models\Role;
 use GuzzleHttp\Psr7\Request;
@@ -132,6 +133,12 @@ Route::middleware('auth')->group(function () {
 
 
 
+    // Profille routes below
+    Route::resource('profiles', ProfileController::class);
+
+
+
+
 
     // customer routes below
 
@@ -146,4 +153,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoice/{order_id}', [OrdertoInvoiceController::class, 'downloadPdf'])->name("downloadPdf");
 
     Route::get('/notification/{product}/{notification}', [NotificationController::class, 'showForUpdating'])->name("products.pricelist");
+
+
+
 });

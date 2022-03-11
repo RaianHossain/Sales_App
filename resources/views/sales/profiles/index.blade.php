@@ -51,10 +51,10 @@
                                             
                                             <td>
                                                 <a class="btn btn-primary"
-                                                    href={{ route('profiles.edit', ['profile' => $profile->id]) }}>Edit</a>
+                                                    href={{ route('profiles.edit', $profile->id) }}>Edit</a>
                                                     
                                                 
-                                                <form action={{ route('profiles.destroy', ['profile' => $profile->id]) }}
+                                                <form action={{ route('profiles.destroy', $profile->id) }}
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method("DELETE")
