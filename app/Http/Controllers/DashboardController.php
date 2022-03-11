@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Notification;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class DashboardController extends Controller
 
         // dd($newCustomersToday);
         $totalCustomers = Customer::count();
-
+        $notifications1 = Notification::latest();
+        $notifications = $notifications1->paginate(6);
 
 
         $januaryTotalOrder = Order::whereMonth('created_at', '1')->get()->count();
@@ -57,7 +59,7 @@ class DashboardController extends Controller
         $decemberTotalOrder = Order::whereMonth('created_at', '12')->get()->count();
         $decemberTotalOrderTotalAmount = Order::whereMonth('created_at', '12')->get()->sum('totalAmount');
 
-        
+
         // dd($decemberTotalOrder);
         $monthlyDatas = [
             [
@@ -121,9 +123,9 @@ class DashboardController extends Controller
                 'totalAmount' => $decemberTotalOrderTotalAmount
             ]
 
-            ];
-        
-            // dd($monthlyDatas);
-        return view('sales.landing', ['ordersToday'=>$ordersToday, 'newCustomersToday'=> $newCustomersToday, 'totalCustomers'=>$totalCustomers, 'monthlyDatas' => $monthlyDatas, 'totalEarningToday' => $totalEarningToday]);
+        ];
+
+        // dd($monthlyDatas);
+        return view('sales.landing', ['ordersToday' => $ordersToday, 'newCustomersToday' => $newCustomersToday, 'totalCustomers' => $totalCustomers, 'monthlyDatas' => $monthlyDatas, 'totalEarningToday' => $totalEarningToday, 'notifications' => $notifications]);
     }
 }

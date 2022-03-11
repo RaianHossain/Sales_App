@@ -76,9 +76,12 @@
           <!-- ./col -->
         </div>
         <!-- /.row -->
+
+        
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
+          <div class="col-md-8">
           <section >
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
@@ -141,9 +144,29 @@
             
             <!-- /.card -->
           </section>
+        </div>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          
+          <div class="col-md-4 ">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Notifications
+                </h3></div><!-- /.card-header -->
+                <div class="card-body">
+            @foreach ($notifications as $notification)
+              <a href="{{ $notification->link }}" >
+                <div class="border rounded-pill;  background-color: {{ $notification->color }}">
+                <p style="color:'black'">{{ $notification->name }}</p>
+                <p style="color:'black'">{{ $notification->created_at->diffForHumans() }}</p>
+              </div>
+            </a>
+            @endforeach
+          </div>
+          {{ $notifications->links() }} 
+        </div>
+        </div>
           <!-- right col -->
         </div>
         <!-- /.row (main row) -->

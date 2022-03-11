@@ -30,24 +30,25 @@
                     <a class="nav-link active" aria-current="page" href="{{ route("welcome") }}">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ route("quotations.create") }}">Order your Quotation</a>
+                    <a class="nav-link" href="{{ route("quotations.create") }}">Order Requst</a>
                   </li>
                   <li>
-                    <form class="d-flex" method="" action="#">
+                    <form class="d-flex" method="get" action="{{ route('frontend_search') }}">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                       </form>
                   </li>
-             <li >
+             <li class=" nav-item">
                     @if (Route::has('login'))
                         {{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> --}}
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class=" nav-link text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-        
+                                <a href="{{ route('login') }}" class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        </li>
+                                <li class=" nav-item">
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                    <a href="{{ route('register') }}" class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                                 @endif
                             @endauth
                         {{-- </div> --}}
@@ -61,7 +62,6 @@
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">

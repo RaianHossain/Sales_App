@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Pricelist;
 use App\Models\Product;
@@ -80,6 +81,16 @@ class OrderController extends Controller
             $productToUpdate = Product::find($products[$i]);
             // dd($productToUpdate);
             $productToUpdate->quantity = $productToUpdate->quantity - $quantities[$i];
+            if ($productToUpdate->quantity < 50) {
+                $notification = Notification::create([
+                    'name' => "Low stock of product: " . $productToUpdate->name,
+                    'status' => 'unread',
+                    'link' => 'http://127.0.0.1:8000/notification/' . $productToUpdate->id,
+                    'color' => '#ADD8E6'
+                ]);
+                $notification->link = $notification->link . '/' . $notification->id;
+                $notification->update();
+            }
             $totalAmount = $productToUpdate->price * $quantities[$i];
             $productToUpdate->update();
         }
