@@ -62,9 +62,9 @@
                             <!-- {{ trans('cruds.order.fields.customer_email') }} -->
                             Status
                         </th>
-                        <!-- <th>
-                            &nbsp;
-                        </th> -->
+                        <th>
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,28 +105,10 @@
                             <td>
                                 {{ $order->status ?? '' }}
                             </td>
-                            <!-- <td>
-                                @can('order_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.orders.show', $order->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                            <td>
+                            <a href="{{ route('downloadPdf', ['order_id'=>$order->id]) }}" class="btn btn-warning btn-sm">Create Invoice</a>
 
-                                @can('order_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.orders.edit', $order->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
-
-                                @can('order_delete')
-                                    <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-
-                            </td> -->
+                            </td>
 
                         </tr>
                     @endforeach

@@ -136,6 +136,13 @@ class ProductController extends Controller
         return view('sales.products.index', [
             'products' => $products
         ]);
-        return view('welcome', ['products' => $products]);
+    }
+
+    public function frontend_search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
+        return view('welcome', [
+            'products' => $products
+        ]);
     }
     }

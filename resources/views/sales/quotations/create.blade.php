@@ -32,22 +32,17 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{ route("quotations.create") }}">Order your Quotation</a>
                   </li>
-                  <li>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                      </form>
-                  </li>
-             <li >
+                  <li class=" nav-item">
                     @if (Route::has('login'))
                         {{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> --}}
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class=" nav-link text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-        
+                                <a href="{{ route('login') }}" class="nav-link text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        </li>
+                                <li class=" nav-item">
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                    <a href="{{ route('register') }}" class="nav-link ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
                                 @endif
                             @endauth
                         {{-- </div> --}}
@@ -60,7 +55,7 @@
     
 <div class="container">
 
-    <h1>Quatation</h1>
+    <h1>Order Requst</h1>
 <div class="card">
     <!-- <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.quotation.title_singular') }}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrdertoInvoiceController;
@@ -15,6 +16,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Role;
 use GuzzleHttp\Psr7\Request;
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Search;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,8 @@ use GuzzleHttp\Psr7\Request;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/frontend_search', [ProductController::class, 'frontend_search'] )->name('frontend_search');
 
 Route::resource('quotations', QuotationController::class);
 
@@ -100,6 +104,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('/products/{product}', [ProductController::class, 'update'])->name("products.update");
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name("products.destroy");
+   
+
 
 
 
@@ -134,4 +140,10 @@ Route::middleware('auth')->group(function () {
     // Route::post('/customers', [CustomerController::class,'store'])->name("customers.store");
 
     Route::resource('customers', CustomerController::class);
+
+    // Route::get('/invoice/{order_id}', [OrdertoInvoiceController::class, 'createPdf'])->name("createInvoice");
+
+    Route::get('/invoice/{order_id}', [OrdertoInvoiceController::class, 'downloadPdf'])->name("downloadPdf");
+
+    Route::get('/notification/{product}/{notification}', [NotificationController::class, 'showForUpdating'])->name("products.pricelist");
 });
