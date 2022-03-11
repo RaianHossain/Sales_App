@@ -9,13 +9,6 @@
     </x-elements.breadcrumb>
 
     <section class="content">
-<<<<<<< HEAD
-        <div class="container-fluid">
-
-            <!-- @if (isset($found) && $found == 1)
-<h1>hello</h1>
-@endif -->
-=======
         <script>
 
             function showPosition() {
@@ -64,7 +57,6 @@
     <!-- @if(isset($found) && $found==1)
         <h1>hello</h1>
     @endif -->
->>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
 
             <form action="{{ route('orders.search') }}" method="get">
                 <div class="form-group">
@@ -83,9 +75,7 @@
         {{ trans('global.create') }} {{ trans('cruds.order.title_singular') }}
     </div> -->
 
-<<<<<<< HEAD
                 <div class="card-body">
-=======
     <div class="card-body">
         
         <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
@@ -95,7 +85,6 @@
             <input type="hidden" id="latitude" name="latitude"  {{ trans('cruds.order.fields.latitude') }}>
             <input type="hidden" id="longitude" name="longitutde"  {{ trans('cruds.order.fields.longitutde') }} >
             </div>
->>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
 
                     <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -281,7 +270,7 @@
                                             <tr id="product{{ $index }}">
                                                 <td>
                                                     <select name="products[]" class="form-control">
-                                                        <option value="">-- choose product --</option>
+                                                          <option value="">-- choose product --</option>
                                                         @foreach ($products as $product)
                                                             <option value="{{ $product->id }}"
                                                                 {{ $oldProduct == $product->id ? ' selected' : '' }}>
@@ -319,11 +308,6 @@
 
                 </div>
             </div>
-<<<<<<< HEAD
-        </div>
-    </section>
-</x-master>
-=======
              
             <div>
                 <!-- <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}"> -->
@@ -339,4 +323,3 @@
 
 
 </x-master>
->>>>>>> ad8546cd0e909fd6b3b8ce2ed1a091d3e1cc893f
