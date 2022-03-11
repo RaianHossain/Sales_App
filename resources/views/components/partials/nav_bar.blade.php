@@ -5,24 +5,24 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href={{ route("landing") }} class="nav-link">Home</a>
+      <a href={{ route("dashboard") }} class="nav-link">Home</a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Orders
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button">Quotation Order</button>
+          <a class="dropdown-item" href={{ route("quotations.index") }} type="button">Quotation Order</a>
           <a href={{ route("orders.index") }}  class="dropdown-item" type="button">Orders</a>
           <a class="dropdown-item" type="button">Sales Teams</a>
-          <a class="dropdown-item" type="button">Customers</a>
+          <a href="{{ route('customers.index') }}" class="dropdown-item" type="button">Customers</a>
       </div>
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,38 +30,39 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
         <a href={{ route("products.index") }}  class="dropdown-item" type="button">Products</a>
-        <a href="#"  class="dropdown-item" type="button">Pricelist</a>
+        <a href={{ route("pricelists.index") }}  class="dropdown-item" type="button">Pricelist</a>
 
       </div>
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Invoice
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" type="button">Order to Invoice</a>
-          <a class="dropdown-item" type="button">Order to Upsell</a>
+          <a href={{ route("orders_to_invoice.index") }} class="dropdown-item" type="button">Order to Invoice</a>
+          <a href="" class="dropdown-item" type="button">Order to Upsell</a>
       </div>
       </div>
     </li>
 
-    <li class="nav-item d-none d-sm-inline-block">
+    <li class="nav-item d-none d-sm-inline-block mr-2">
       <!-- <a href="#" class="nav-link">Contact</a> -->
       <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Report
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" type="button">Dashboard</a>
-          <a class="dropdown-item" type="button">Sales</a>
+          <a href="#" class="dropdown-item" type="button">Dashboard</a>
+          <a href="#" class="dropdown-item" type="button">Sales</a>
       </div>
       </div>
     </li>
 
+    
     
 
 
@@ -71,9 +72,14 @@
   <ul class="navbar-nav ml-auto">
     <!-- Navbar Search -->
     <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
+      
+
+      <form action="{{ route('logout') }}" method="POST" ;">
+          @csrf
+          <button type="submit">Logout</button>
+      </form>
+      
+      <!-- <a href={{ route('logout') }}>Logout</a> -->
       <div class="navbar-search-block">
         <form class="form-inline">
           <div class="input-group input-group-sm">
@@ -92,7 +98,7 @@
     </li>
 
     <!-- Messages Dropdown Menu -->
-    <li class="nav-item dropdown">
+    {{-- <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-comments"></i>
         <span class="badge badge-danger navbar-badge">3</span>
@@ -148,9 +154,9 @@
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
       </div>
-    </li>
+    </li> --}}
     <!-- Notifications Dropdown Menu -->
-    <li class="nav-item dropdown">
+    {{-- <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
         <span class="badge badge-warning navbar-badge">15</span>
@@ -175,16 +181,16 @@
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
-    </li>
+    </li>--}}
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
         <i class="fas fa-th-large"></i>
       </a>
-    </li>
+    </li>  --}}
   </ul>
 </nav>

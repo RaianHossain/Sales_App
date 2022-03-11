@@ -1,8 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src={{ asset("ui/dist/img/AdminLTELogo.png") }} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="{{ route("dashboard") }}" class="brand-link" style="text-decoration: none; ">
+      {{-- <img src={{ asset("ui/dist/img/AdminLTELogo.png") }} alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+      <img src="https://img.icons8.com/color/32/000000/sales-performance.png"/>
+      <span class="brand-text font-weight-light">Rusmus's Sales</span>
     </a>
 
     <!-- Sidebar -->
@@ -10,15 +11,15 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src={{ asset("ui/dist/img/user2-160x160.jpg") }} class="img-circle elevation-2" alt="User Image">
+          {{-- <img src={{ asset("ui/dist/img/user2-160x160.jpg") }} class="img-circle elevation-2" alt="User Image"> --}}
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="{{ route("users.details") }}" class="d-block" style="text-decoration: none; ">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
+      {{-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -27,14 +28,14 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+          {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -42,7 +43,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            {{-- <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
@@ -62,8 +63,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -71,8 +72,8 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -580,10 +581,10 @@
               <i class="nav-icon fas fa-file"></i>
               <p>Documentation</p>
             </a>
-          </li>
-          <li class="nav-header">MULTI LEVEL EXAMPLE</li>
+          </li> --}}
+          <li class="nav-header">Features:</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("orders.index") }}" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Orders
@@ -610,7 +611,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route("customers.index") }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customers</p>
                 </a>
@@ -626,13 +627,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route("products.index") }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Product List</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route("pricelists.index") }}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Pricelistt</p>
                     </a>
@@ -687,8 +688,36 @@
                   </li>
                 </ul>
               </li>
+
               
-                
+ @can('user-management')
+   
+ 
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-circle"></i>
+                  <p>
+                    User Management
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route("roles.index") }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Role</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route("users.index") }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>User</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
+    @endcan            
               
       
       </nav>

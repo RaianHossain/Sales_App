@@ -25,6 +25,17 @@
   <link rel="stylesheet" href={{asset("ui/plugins/daterangepicker/daterangepicker.css")}}>
   <!-- summernote -->
   <link rel="stylesheet" href={{asset("ui/plugins/summernote/summernote-bs4.min.css")}}>
+
+
+  <!-- include libraries(jQuery, bootstrap) -->
+  <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+  <script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- include summernote css/js-->
+  <link href="summernote-bs5.css" rel="stylesheet">
+  <script src="summernote-bs5.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -40,6 +51,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+ 
   {{ $slot }}
   </div>
   <!-- /.content-wrapper -->
@@ -87,5 +99,28 @@
 <script src={{ asset("ui/dist/js/demo.js") }}></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src={{ asset("ui/dist/js/pages/dashboard.js") }}></script>
+
+<!-- jquery for orders table -->
+<script>
+  $(document).ready(function(){
+    let row_number = 1;
+    $("#add_row").click(function(e){
+      e.preventDefault();
+      let new_row_number = row_number - 1;
+      $('#product' + row_number).html($('#product' + new_row_number).html()).find('td:first-child');
+      $('#products_table').append('<tr id="product' + (row_number + 1) + '"></tr>');
+      row_number++;
+    });
+
+    $("#delete_row").click(function(e){
+      e.preventDefault();
+      if(row_number > 1){
+        $("#product" + (row_number - 1)).html('');
+        row_number--;
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

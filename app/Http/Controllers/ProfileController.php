@@ -70,22 +70,22 @@ class ProfileController extends Controller
         }
     }
 
-    public function show(profile $profile)
+    // public function show(profile $profile)
+    // {
+    //     return view('sales.profiles.show', [
+    //         'profile' => $profile
+    //     ]);
+    // }
+
+    public function edit($id)
     {
-        return view('sales.profile.show', [
+        $profile = Profile::find($id);
+        return view('sales.profiles.edit', [
             'profile' => $profile
         ]);
     }
 
-    public function edit(Profile $profile)
-    {
-        // $profile = profile::find($id);
-        return view('sales.profile.edit', [
-            'profile' => $profile
-        ]);
-    }
-
-    public function update(Request $request, profile $profile)
+    public function update(Request $request, $id)
     {
         try {
             $request->validate([
@@ -97,24 +97,23 @@ class ProfileController extends Controller
 
             ]);
 
-            $requestData = [
-                'user_name' => $request->user_name,
-                'user_email' => $request->user_email,
-                'user_phone' => $request->user_phone,
-                'user_address' => $request->user_address,
-                'user_picture' => $request->user_picture,
+            
+    
+
+                $profile = Profile::find($id);
+                $profile->user_name = $request->user_name;
+                $profile->user_email = $request->user_email;
+                $profile->user_phone = $request->user_phone;
+                $profile->user_address = $request->user_address;
+                $profile->user_picture = $request->user_picture;
+                $profile->save();
+
                 
                 
-            ];
-
-            if ($request->hasFile('user_picture')) {
-                $requestData['user_picture'] = $this->uploadImage(request()->file('user_picture'));
-            }
-
-            $profile->update($requestData);
+        
 
             // $request->session()->flash('message', 'Task was successful!');
-            return redirect()->route('profiles.show', ['profile' => $profile->id])->withMessage('Successfully Updated!');
+            return redirect()->route('profiles.index')->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
             // dd($e->getMessage());
