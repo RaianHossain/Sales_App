@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('products')->latest()->get();
+        $orders = Order::with('products')->latest()->paginate(5);
 
         return view('sales.orders.index', compact('orders'));
     }
@@ -86,7 +86,7 @@ class OrderController extends Controller
                     'name' => "Low stock of product: " . $productToUpdate->name,
                     'status' => 'unread',
                     'link' => 'http://127.0.0.1:8000/notification/' . $productToUpdate->id,
-                    'color' => '#ADD8E6'
+                    'color' => '#c2c2a3'
                 ]);
                 $notification->link = $notification->link . '/' . $notification->id;
                 $notification->update();

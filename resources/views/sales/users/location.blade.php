@@ -1,7 +1,7 @@
 <x-master>
     <x-elements.breadcrumb>
         <x-slot name="title">
-        user current location
+        User Current Location
         </x-slot>
         <li class="breadcrumb-item"><a href="#">Profile</a></li>
         <li class="breadcrumb-item active">Profile Details</li>

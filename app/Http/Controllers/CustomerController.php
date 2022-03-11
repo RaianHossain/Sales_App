@@ -11,7 +11,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers =  customer::latest()->get();
+        $customers =  customer::latest()->paginate(10);
         return view('sales.customers.index',['customers'=> $customers]);
     }
     public function create()
