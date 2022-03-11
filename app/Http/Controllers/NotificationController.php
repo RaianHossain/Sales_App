@@ -14,7 +14,7 @@ class NotificationController extends Controller
 
         $notification = Notification::find($notification_id);
         $notification->status = 'read';
-        $notification->color = 'gray';
+        $notification->color = '#f2f2f2';
         $notification->update();
 
         $product = Product::find($product_id);

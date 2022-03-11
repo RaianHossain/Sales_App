@@ -14,7 +14,7 @@ class QuotationController extends Controller
 
     public function index()
     {
-        $quotations = Quotation::all();
+        $quotations = Quotation::latest()->paginate(5);
         return view('sales.quotations.index', compact('quotations'));
     }
 

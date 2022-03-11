@@ -106,7 +106,7 @@
             </table>
         </div>
 
-
+{{ $quotations->links() }}
     </div>
 </div>
         <!-- /.row -->

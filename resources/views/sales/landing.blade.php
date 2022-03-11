@@ -63,7 +63,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ $totalEarningToday ?? '0' }}</h3>
+                <h3>{{ number_format($totalEarningToday) ?? '0' }}</h3>
 
                 <p>Today Earings</p>
               </div>
@@ -88,7 +88,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  Monthly Report
+                  Monthly Report , {{today()->format('Y')}}
                 </h3>
                 <!-- <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
@@ -155,14 +155,16 @@
                   Notifications
                 </h3></div><!-- /.card-header -->
                 <div class="card-body">
-            @foreach ($notifications as $notification)
-              <a href="{{ $notification->link }}" >
-                <div class="border rounded-pill;  background-color: {{ $notification->color }}">
-                <p style="color:'black'">{{ $notification->name }}</p>
+            @forelse ($notifications as $notification)
+              <a href="{{ $notification->link }}" style="text-decoration: none; " >
+                <div class="border rounded-pill;" style="  background-color: {{ $notification->color }}; padding-left:5px; color:black;">
+                <p style="color:'black'; font-size:15px; font-weight:bold;">{{ $notification->name }}</p>
                 <p style="color:'black'">{{ $notification->created_at->diffForHumans() }}</p>
               </div>
             </a>
-            @endforeach
+            @empty
+              <p>No Notifications</p>
+            @endforelse
           </div>
           {{ $notifications->links() }} 
         </div>

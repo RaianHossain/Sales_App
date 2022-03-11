@@ -20,7 +20,7 @@ class DashboardController extends Controller
         // dd($newCustomersToday);
         $totalCustomers = Customer::count();
         $notifications1 = Notification::latest();
-        $notifications = $notifications1->paginate(6);
+        $notifications = $notifications1->paginate(4);
 
 
         $januaryTotalOrder = Order::whereMonth('created_at', '1')->get()->count();

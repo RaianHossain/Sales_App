@@ -72,6 +72,7 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        {{ $customers->links() }}
                     </div>
                     <!-- /.card -->
 
