@@ -14,4 +14,6 @@ class Role extends Model
     { //inverse relation
         return $this->hasMany(User::class);
     }
+
+    
 }
