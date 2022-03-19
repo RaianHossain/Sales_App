@@ -94,4 +94,50 @@ class QuotationController extends Controller
         return redirect()->route('quotations.index')
             ->with('success', 'Quotation deleted successfully');
     }
+
+    public function convertToOrder(Quotation $quotation)
+    {
+        //  @@dd($quotation);
+        $totalAmount = 0;
+        // $products =  $quotation->products;
+        // $quantities = $quotation->products->pluck('pivot.quantity')->toArray();
+
+        // for ($i = 0; $i < count($products); $i++) {
+        //     // dd($products[$i]);
+
+        //     $productToUpdate = Product::find($products[$i]);
+        //     // dd($productToUpdate);
+        //     $productToUpdate->quantity = $productToUpdate->quantity - $quantities[$i];
+        //     $totalAmount = $productToUpdate->price * $quantities[$i];
+        //     $productToUpdate->update();}
+
+        foreach($quotation->products as $key => $item){
+            $product = Product::find($item->id);
+            $product->quantity = $product->quantity - $item->pivot->quantity;
+            $product->update();
+            $total_amount = $item->pivot->quantity * $item->price;
+            $totalAmount = $totalAmount + $total_amount;}
+        
+        $order = Order::create([
+            'customer_name' => $quotation->name,
+            'customer_email' => $quotation->email,
+            'address' => $quotation->address,
+            'phone' => $quotation->phone,
+            'status' => 'Pending',
+            'payment_method' => 'Cash',
+            'user_id' => auth()->user()->id,
+            'totalAmount' =>$totalAmount,
+        ]);
+
+        $products = $quotation->products;
+        foreach ($products as $product) {
+            $order->products()->attach($product->id, ['quantity' => $product->pivot->quantity]);
+        }
+
+        
+        $quotation->products()->detach();
+        $quotation->delete();
+        
+        return redirect()->route('orders.index')->with('success', 'Quotation converted to order successfully');
+    }
 }

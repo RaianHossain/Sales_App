@@ -34,7 +34,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/frontend_search', [ProductController::class, 'frontend_search'] )->name('frontend_search');
+Route::get('/frontend_search', [ProductController::class, 'frontend_search'])->name('frontend_search');
 
 Route::resource('quotations', QuotationController::class);
 
@@ -105,7 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::post('/products/{product}', [ProductController::class, 'update'])->name("products.update");
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name("products.destroy");
-   
+
 
 
 
@@ -154,6 +154,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/notification/{product}/{notification}', [NotificationController::class, 'showForUpdating'])->name("products.pricelist");
 
+<<<<<<< HEAD
 
 
+=======
+    Route::get('/quotations/{quotation}', [QuotationController::class, 'convertToOrder'])->name("quotations.Quotation_order");
+>>>>>>> 45418f386153925c872948f63f7ae917e05f5aea
 });

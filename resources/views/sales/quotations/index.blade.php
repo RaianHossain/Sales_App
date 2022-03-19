@@ -45,6 +45,10 @@
                             <!-- {{ trans('cruds.quotation.fields.products') }} -->
                             Products
                         </th>
+                        <th>
+                            <!-- {{ trans('cruds.quotation.fields.Total_amount') }} -->
+                            Total
+                        </th>
                          <th>
                             Actions
                         </th> 
@@ -76,27 +80,37 @@
                                 @endforeach
                                 </ul>
                             </td>
+<td> 
+    @foreach($quotation->products as $key => $item)
+                                 {{ $total_amount = $item->pivot->quantity * $item->price }}
+                                @endforeach
+</td>
 
                              <td>
-                                @can('quotation_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.quotations.show', $quotation->id) }}">
+                                {{-- @can('quotation_show') --}}
+                                    {{-- <a class="btn btn-xs btn-primary" href="{{ route('admin.quotations.show', $quotation->id) }}">
                                         {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                                    </a> --}}
 
-                                @can('quotation_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.quotations.edit', $quotation->id) }}">
+                                    <a class="btn btn-xs btn-primary" href="{{ route('quotations.Quotation_order', $quotation->id) }}">
+                                     create order 
+                                    </a>
+
+                                {{-- @endcan --}}
+
+                                {{-- @can('quotation_edit') --}}
+                                    {{-- <a class="btn btn-xs btn-info" href="{{ route('admin.quotations.edit', $quotation->id) }}">
                                         {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                    </a> --}}
+                                {{-- @endcan --}}
 
-                                @can('quotation_delete')
-                                    <form action="{{ route('admin.quotations.destroy', $quotation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                {{-- @can('quotation_delete') --}}
+                                    {{-- <form action="{{ route('admin.quotations.destroy', $quotation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
+                                    </form> --}}
+                                {{-- @endcan --}}
 
                             </td> 
 
